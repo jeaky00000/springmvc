@@ -7,14 +7,31 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
-@ResponseBody
+
 public class UserController {
     @GetMapping("/list")
-    public String list(@RequestParam String name){
-        return "hello list" + name;
+    @ResponseBody
+    public String list(@RequestParam Date name){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        String date = simpleDateFormat.format(name);
+        return "hello list  " + date;
+    }
+
+    @GetMapping("/put")
+    public String put(Map<String, String> map){
+        map.put("name", "zhai");
+        map.put("age", "30");
+        return "user/put";
+    }
+
+    @ExceptionHandler
+    @ResponseBody
+    public String exception(Exception ex){
+        return ex.getMessage();
     }
 
     @InitBinder
