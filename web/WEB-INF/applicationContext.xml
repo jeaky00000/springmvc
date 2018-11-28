@@ -20,6 +20,7 @@
 
 
     <import resource="application-mapper.xml"/>
+    <import resource="application-transaction.xml"/>
 
     <!--
     <mvc:interceptors>
